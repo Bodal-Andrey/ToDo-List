@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import './font-awesome/css/font-awesome.min.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -12,4 +12,4 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-reportWebVitals();
+registerServiceWorker();
