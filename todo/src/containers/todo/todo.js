@@ -7,7 +7,10 @@ import { TASKS } from '../../const';
 class ToDo extends React.Component {
     state = {
         activeFilter: 'all',
-    };
+        taskText: '',
+    }
+
+    handleInputChange = ({target: {value}}) => {}
 
     render() {
         const activeFilter = this.state;
