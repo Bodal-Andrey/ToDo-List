@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 const ToDoItem = ({id, text, isCompleted, removeTask, completeTask }) => {
     return (
         <li onClick={() => completeTask(id)} className="todo-item">
-            <i className={isCompleted ? 'mark far fa-check circle' : 'mark far fa-circle'} />
+            <i className={isCompleted ? 'mark fa fa-check-circle-o' : 'mark fa fa-circle-thin'} />
             <span className={isCompleted ? 'completed text' : 'text'}>{text}</span>
-            <i onClick={() => removeTask(id)} className="fas fa-times" />
+            <i onClick={() => removeTask(id)} className="fa fa-times" />
         </li>
     );
 }; 
