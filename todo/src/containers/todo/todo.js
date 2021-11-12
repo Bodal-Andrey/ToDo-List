@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import ToDoInput from '../../components/todo-input';
 import ToDoList from '../../components/todo-list';
 import Footer from '../../components/footer';
-import addTask from '../../actions/actionCreator';
+import { addTask, removeTask } from '../../actions/actionCreator';
 
 class ToDo extends React.Component {
     state = {
@@ -23,7 +23,7 @@ class ToDo extends React.Component {
         if (taskText.length > 3 && key === 'Enter') {
             const { addTask } = this.props;
             addTask((new Date()).getTime(), taskText, false);
-            this.state({
+            this.setState({
                 taskText: '',
             });
         }
@@ -31,9 +31,9 @@ class ToDo extends React.Component {
 
     render() {
         const { activeFilter, taskText } = this.state;
-        const { tasks } = this.props;
+        const { tasks, removeTask } = this.props;
         const isTasksExist = tasks && tasks.length > 0;
-
+console.log(removeTask)
         return (
             <div className="todo-wrapper">
                 <ToDoInput
@@ -41,7 +41,7 @@ class ToDo extends React.Component {
                     onChange={this.handleInputChange}
                     value={taskText}
                 />
-                {isTasksExist && <ToDoList tasksList={tasks} />}
+                {isTasksExist && <ToDoList tasksList={tasks} removeTask={removeTask} />}
                 {isTasksExist && <Footer amount={tasks.length} activeFilter={activeFilter} />}
             </div>
         );
@@ -52,4 +52,4 @@ const mapStateToProps = (state) => ({
     tasks: state.tasks,
 });
 
-export default connect(mapStateToProps, {addTask})(ToDo);
+export default connect(mapStateToProps, {addTask, removeTask})(ToDo);

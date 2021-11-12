@@ -8,6 +8,7 @@ const Footer = ({ amount, activeFilter }) => (
         <div className="btn-group">
             {FILTERS_BTN.map(({ text, id }) => (
                 <button
+                    key={id}
                     id={id}
                     className={id === activeFilter ? "filter-btn active" : "filter-btn"}
                 >{text}</button>

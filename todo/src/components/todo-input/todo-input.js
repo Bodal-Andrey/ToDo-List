@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ToDoInput = ({ onChange, value }) => (
+const ToDoInput = ({ onChange, value, onKeyPress }) => (
     <div className="todo-input-wrapper">
         <i className="fas fa-plus" />
         <input
@@ -9,6 +9,7 @@ const ToDoInput = ({ onChange, value }) => (
             placeholder="Click to add task"
             onChange={onChange}
             value={value}
+            onKeyPress={onKeyPress}
         />
     </div>
 );
@@ -16,11 +17,13 @@ const ToDoInput = ({ onChange, value }) => (
 ToDoInput.propTypes = {
     onChange: PropTypes.func,
     value: PropTypes.string,
+    onKeyPress: PropTypes.func,
 };
 
 ToDoInput.defaultProps = {
     onChange: () => { },
     value: '',
+    onKeyPress: () => {},
 };
 
 export default ToDoInput;

@@ -1,4 +1,4 @@
-import { TASKS, ADD_TASK } from '../const';
+import { TASKS, ADD_TASK, REMOVE_TASK } from '../const';
 
 const tasks = (state = TASKS, action) => {
     switch (action.type) {
@@ -10,6 +10,8 @@ const tasks = (state = TASKS, action) => {
                     isCompleted: action.isCompleted,  
                 }
             ];
+        case REMOVE_TASK:
+            return [...state].filter(task => task.id !== action.id);
         default:
             return state;
     }
