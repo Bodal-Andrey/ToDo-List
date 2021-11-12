@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import ToDoInput from '../../components/todo-input';
 import ToDoList from '../../components/todo-list';
 import Footer from '../../components/footer';
-import { addTask, removeTask } from '../../actions/actionCreator';
+import { addTask, removeTask, completeTask } from '../../actions/actionCreator';
 
 class ToDo extends React.Component {
     state = {
@@ -31,7 +31,7 @@ class ToDo extends React.Component {
 
     render() {
         const { activeFilter, taskText } = this.state;
-        const { tasks, removeTask } = this.props;
+        const { tasks, removeTask, completeTask } = this.props;
         const isTasksExist = tasks && tasks.length > 0;
 console.log(removeTask)
         return (
@@ -41,8 +41,15 @@ console.log(removeTask)
                     onChange={this.handleInputChange}
                     value={taskText}
                 />
-                {isTasksExist && <ToDoList tasksList={tasks} removeTask={removeTask} />}
-                {isTasksExist && <Footer amount={tasks.length} activeFilter={activeFilter} />}
+                {isTasksExist && <ToDoList
+                    tasksList={tasks}
+                    removeTask={removeTask}
+                    completeTask={completeTask}
+                />}
+                {isTasksExist && <Footer
+                    amount={tasks.length}
+                    activeFilter={activeFilter}
+                    />}
             </div>
         );
     };
@@ -52,4 +59,4 @@ const mapStateToProps = (state) => ({
     tasks: state.tasks,
 });
 
-export default connect(mapStateToProps, {addTask, removeTask})(ToDo);
+export default connect(mapStateToProps, {addTask, removeTask, completeTask})(ToDo);
