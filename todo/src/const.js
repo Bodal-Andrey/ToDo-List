@@ -31,7 +31,10 @@ const FILTERS_BTN = [
     },
 ];
 
+const ADD_TASK = 'ADD_TASK';
+
 export {
     TASKS,
     FILTERS_BTN,
+    ADD_TASK,
 };

@@ -1,8 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import ToDoInput from '../../components/todo-input';
 import ToDoList from '../../components/todo-list';
 import Footer from '../../components/footer';
-import { TASKS } from '../../const';
+import addTask from '../../actions/actionCreator';
 
 class ToDo extends React.Component {
     state = {
@@ -10,21 +11,45 @@ class ToDo extends React.Component {
         taskText: '',
     }
 
-    handleInputChange = ({target: {value}}) => {}
+    handleInputChange = ({ target: { value } }) => {
+        this.setState({
+            taskText: value,
+        });
+    }
+
+    addTask = ({ key }) => {
+        const { taskText } = this.state;
+
+        if (taskText.length > 3 && key === 'Enter') {
+            const { addTask } = this.props;
+            addTask((new Date()).getTime(), taskText, false);
+            this.state({
+                taskText: '',
+            });
+        }
+    }
 
     render() {
-        const activeFilter = this.state;
-        const tasksList = TASKS;
-        const isTasksExist = tasksList && tasksList.length > 0;
+        const { activeFilter, taskText } = this.state;
+        const { tasks } = this.props;
+        const isTasksExist = tasks && tasks.length > 0;
 
         return (
             <div className="todo-wrapper">
-                <ToDoInput />
-                {isTasksExist && <ToDoList tasksList={tasksList} />}
-                {isTasksExist && <Footer amount={tasksList.length} activeFilter={activeFilter} />}
+                <ToDoInput
+                    onKeyPress={this.addTask}
+                    onChange={this.handleInputChange}
+                    value={taskText}
+                />
+                {isTasksExist && <ToDoList tasksList={tasks} />}
+                {isTasksExist && <Footer amount={tasks.length} activeFilter={activeFilter} />}
             </div>
         );
     };
 };
 
-export default ToDo;
+const mapStateToProps = (state) => ({
+    tasks: state.tasks,
+});
+
+export default connect(mapStateToProps, {addTask})(ToDo);
