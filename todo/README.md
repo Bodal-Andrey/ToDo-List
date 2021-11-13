@@ -1,1 +1,1 @@
-https://Bodal-Andrey.github.io/ToDo-List/todo/build/index.html
+https://epic-franklin-b36a4c.netlify.app
