@@ -1,4 +1,4 @@
-import { ADD_TASK, REMOVE_TASK, COMPLETE_TASK } from '../const';
+import { ADD_TASK, REMOVE_TASK, COMPLETE_TASK, CHANGE_FILTER } from '../const';
 
 const addTask = (id, text, isCompleted) => ({
     type: ADD_TASK,
@@ -17,9 +17,14 @@ const completeTask = (id) => ({
     id,
 });
 
+const changeFilter = (activeFilter) => ({
+    type: CHANGE_FILTER,
+    activeFilter,
+});
 
 export {
     addTask,
     removeTask,
     completeTask,
+    changeFilter,
 };

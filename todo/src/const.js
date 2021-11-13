@@ -34,6 +34,7 @@ const FILTERS_BTN = [
 const ADD_TASK = 'ADD_TASK';
 const REMOVE_TASK = 'REMOVE_TASK';
 const COMPLETE_TASK = 'COMPLETE_TASK';
+const CHANGE_FILTER = 'CHANGE_FILTER';
 
 export {
     TASKS,
@@ -41,4 +42,5 @@ export {
     ADD_TASK,
     REMOVE_TASK,
     COMPLETE_TASK,
+    CHANGE_FILTER,
 };
