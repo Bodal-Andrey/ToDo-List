@@ -1,8 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import ToDoItem from '../todo-item';
+import { ITask } from '../../types';
 
-const ToDoList = ({ tasksList, removeTask, completeTask }) => {
+interface Props {
+    tasksList: Array<ITask>,
+    removeTask: (id: number) => void,
+    completeTask: (id: number) => void,
+};
+
+const ToDoList = ({ tasksList, removeTask, completeTask }: Props) => {
     return (
         <ul className="todo-list">
             {tasksList.map((item) => (
@@ -19,15 +25,9 @@ const ToDoList = ({ tasksList, removeTask, completeTask }) => {
     );
 };
 
-ToDoList.propTypes = {
-    tasksList: PropTypes.array,
-    removeTask: PropTypes.func,
-    completeTask: PropTypes.func,
-};
-
 ToDoList.defaultProps = {
     tasksList: [],
-    removeTask: () => { },
+    removeTask: () => {},
     completeTask: () => {},
 };
 

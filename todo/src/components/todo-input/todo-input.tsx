@@ -1,7 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-const ToDoInput = ({ onChange, value, onKeyPress }) => (
+interface Props {
+    onChange: () => void,
+    value: string,
+    onKeyPress: () => void,
+};
+
+const ToDoInput = ({ onChange, value, onKeyPress }: Props) => (
     <div className="todo-input-wrapper">
         <i className="fa fa-plus" />
         <input
@@ -14,14 +19,8 @@ const ToDoInput = ({ onChange, value, onKeyPress }) => (
     </div>
 );
 
-ToDoInput.propTypes = {
-    onChange: PropTypes.func,
-    value: PropTypes.string,
-    onKeyPress: PropTypes.func,
-};
-
 ToDoInput.defaultProps = {
-    onChange: () => { },
+    onChange: () => {},
     value: '',
     onKeyPress: () => {},
 };

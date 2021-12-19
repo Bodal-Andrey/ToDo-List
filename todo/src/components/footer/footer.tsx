@@ -2,7 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FILTERS_BTN } from '../../const';
 
-const Footer = ({ amount, activeFilter, changeFilter }) => {
+interface Props {
+    amount: number,
+    activeFilter: string,
+    changeFilter: (id: string) => void,
+};
+
+const Footer = ({ amount, activeFilter, changeFilter }: Props) => {
     return (
         <div className="footer">
             <span className="amount">{`${amount} Tasks Left`}</span>

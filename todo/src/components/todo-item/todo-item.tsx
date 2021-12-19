@@ -1,7 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-const ToDoItem = ({id, text, isCompleted, removeTask, completeTask }) => {
+interface Props {
+    id: number,
+    text: string,
+    isCompleted: boolean,
+    removeTask: (id: number) => void,
+    completeTask: (id: number) => void,
+};
+
+const ToDoItem = ({id, text, isCompleted, removeTask, completeTask }: Props) => {
     return (
         <li onClick={() => completeTask(id)} className="todo-item">
             <i className={isCompleted ? 'mark fa fa-check-circle-o' : 'mark fa fa-circle-thin'} />
@@ -10,14 +17,6 @@ const ToDoItem = ({id, text, isCompleted, removeTask, completeTask }) => {
         </li>
     );
 }; 
-
-ToDoItem.propTypes = {
-    id: PropTypes.number,
-    text: PropTypes.string,
-    isCompleted: PropTypes.bool,
-    removeTask: PropTypes.func,
-    completeTask: PropTypes.func,
-};
 
 ToDoItem.defaultProps = {
     id: 0,
