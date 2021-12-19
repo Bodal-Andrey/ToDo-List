@@ -21,7 +21,15 @@ class ToDo extends React.Component {
 
         if (taskText.length > 3 && key === 'Enter') {
             const { addTask } = this.props;
-            addTask((new Date()).getTime(), taskText, false);
+
+            const task = {
+                id: (new Date()).getTime(),
+                text: taskText,
+                isCompleted: false,
+            };
+
+            addTask(task);
+
             this.setState({
                 taskText: '',
             });
