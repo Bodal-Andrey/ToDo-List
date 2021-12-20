@@ -4,19 +4,30 @@ import ToDoInput from '../../components/todo-input';
 import ToDoList from '../../components/todo-list';
 import Footer from '../../components/footer';
 import { addTask, removeTask, completeTask, changeFilter } from '../../actions/actionCreator';
+import { ITask, Filter } from '../../types';
 
-class ToDo extends React.Component {
+interface Props {
+    addTask: (task: ITask) => void;
+    tasks: Array<ITask>,
+    task: ITask,
+    filter: Filter,
+    removeTask: (id: number) => void,
+    completeTask: (id: number) => void,
+    changeFilter: (activeFilter: Filter) => void,
+};
+
+class ToDo extends React.Component<Props> {
     state = {
         taskText: '',
     }
 
-    handleInputChange = ({ target: { value } }) => {
+    handleInputChange = (event: { target: HTMLInputElement }) => {
         this.setState({
-            taskText: value,
+            taskText: event.target.value,
         });
     }
 
-    addTask = ({ key }) => {
+    addTask = ({ key }: any) => {
         const { taskText } = this.state;
 
         if (taskText.length > 3 && key === 'Enter') {
@@ -36,19 +47,19 @@ class ToDo extends React.Component {
         }
     }
 
-    filterTasks = (tasks, activeFilter) => {
+    filterTasks = (tasks: Array<ITask>, activeFilter: Filter) => {
         switch (activeFilter) {
             case 'completed':
-                return tasks.filter(task => task.isCompleted);
+                return tasks.filter((task) => task.isCompleted);
             case 'active':
-                return tasks.filter(task => !task.isCompleted);
+                return tasks.filter((task) => !task.isCompleted);
             default:
                 return tasks;
         }
     }
 
-    getActiveTasksCounter = (tasks) => {
-        return tasks.filter(task => !task.isCompleted).length;
+    getActiveTasksCounter = (tasks: Array<ITask>) => {
+        return tasks.filter((task) => !task.isCompleted).length;
     }
 
     render() {
@@ -80,7 +91,7 @@ class ToDo extends React.Component {
     };
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: { tasks: Array<ITask>; filter: Filter; }) => ({
     tasks: state.tasks,
     filter: state.filter,
 });

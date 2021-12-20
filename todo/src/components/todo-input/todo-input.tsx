@@ -1,9 +1,9 @@
 import React from 'react';
 
 interface Props {
-    onChange: () => void,
+    onChange: ({ target: { value} }: any) => void,
     value: string,
-    onKeyPress: () => void,
+    onKeyPress: ({key}: any) => void,
 };
 
 const ToDoInput = ({ onChange, value, onKeyPress }: Props) => (
